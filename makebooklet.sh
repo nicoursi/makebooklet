@@ -9,10 +9,11 @@ delta="0cm 0cm"
 output=""
 temp_tex="temp_booklet.tex"
 totalpages=""
+clip_option=""
 
 # Help message
 usage() {
-    echo "Usage: $0 -i <input.pdf> [-a4 | -a5] [-s <signature>] [-p <totalpages>] [-t <'L T R B'>] [-d <'X Y'>] [-o <output.pdf>]"
+    echo "Usage: $0 -i <input.pdf> [-a4 | -a5] [-s <signature>] [-p <totalpages>] [-t <'L T R B'>] [-d <'X Y'>] [-o <output.pdf>] [-c]"
     echo
     echo "Options:"
     echo "  -i   Input PDF file (required)"
@@ -23,12 +24,13 @@ usage() {
     echo "  -t   Trim margins (left top right bottom), e.g., '1cm 1cm 1cm 1cm' (default: $trim)"
     echo "  -d   Delta adjustments (horizontal vertical), e.g., '0.5cm 0cm' (default: $delta)"
     echo "  -o   Output PDF file (default: '<input>-booklet.pdf')"
+    echo "  -c   Clip the input PDF page content (useful for cropping a specific area)"
     echo "  -h   Show this help message"
     exit 1
 }
 
 # Parse command-line arguments
-while getopts "i:s:p:t:d:o:a45h" opt; do
+while getopts "i:s:p:t:d:o:a45ch" opt; do
     case ${opt} in
         i) input="$OPTARG" ;;
         s) signature="$OPTARG" ;;
@@ -38,6 +40,7 @@ while getopts "i:s:p:t:d:o:a45h" opt; do
         o) output="$OPTARG" ;;
         a4) pagesize="A4" ;;
         a5) pagesize="A5" ;;
+        c) clip_option="clip" ;;
         h) usage ;;
         *) usage ;;
     esac
@@ -104,7 +107,6 @@ for sig in 20 24 28; do
         min_white_pages=$white_pages
         best_signature=$sig
     fi
-
 done
 signature=$best_signature
 echo "ℹ️  Auto-selected signature size: $signature to minimize white pages ($min_white_pages blank pages)."
@@ -124,7 +126,7 @@ $doc_class
 \\usepackage{pdfpages}
 \\begin{document}
 
-\\includepdf[pages=-,delta=$delta,fitpaper=false,trim=$trim,noautoscale=false,signature=$signature,rotateoversize=false$landscape_flag]{${input}}
+\\includepdf[pages=-,delta=$delta,fitpaper=false,trim=$trim,noautoscale=false,signature=$signature,rotateoversize=false$landscape_flag,$clip_option]{${input}}
 
 \\end{document}
 EOF
