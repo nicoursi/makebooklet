@@ -44,6 +44,9 @@ sudo apt-get install poppler-utils
 - `-o <output.pdf>`
   Specify the output PDF file name. If not specified, it will default to `<input>-booklet.pdf`.
 
+- `-c`
+  Clip the input PDF page content (useful for cropping a specific area). For example if you need to get rid of page numbers from the original document.
+
 - `-h`
   Show this help message.
 

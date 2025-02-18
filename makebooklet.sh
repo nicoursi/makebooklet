@@ -24,7 +24,7 @@ usage() {
     echo "  -t   Trim margins (left top right bottom), e.g., '1cm 1cm 1cm 1cm' (default: $trim)"
     echo "  -d   Delta adjustments (horizontal vertical), e.g., '0.5cm 0cm' (default: $delta)"
     echo "  -o   Output PDF file (default: '<input>-booklet.pdf')"
-    echo "  -c   Clip the input PDF page content (useful for cropping a specific area)"
+    echo "  -c   Clip the input PDF page content (useful for cropping a specific area). For example if you need to get rid of page numbers from the original document"
     echo "  -h   Show this help message"
     exit 1
 }
