@@ -14,7 +14,7 @@ sudo apt-get install poppler-utils
 ## Usage
 
 ```
-./generate_booklet.sh -i <input.pdf> [-a4 | -a5] [-s <signature>] [-p <totalpages>] [-t <'L T R B'>] [-d <'X Y'>] [-o <output.pdf>]
+./makebooklet.sh -i <input.pdf> [-a4 | -a5] [-s <signature>] [-p <totalpages>] [-t <'L T R B'>] [-d <'X Y'>] [-o <output.pdf>]
 ```
 
 
@@ -52,11 +52,11 @@ sudo apt-get install poppler-utils
 Convert an A4-sized PDF to a booklet with a signature of 20 pages and custom margins:
 
 ```bash
-./generate_booklet.sh -i input.pdf -s 20 -t "1cm 1cm 1cm 1cm"
+./makebooklet.sh -i input.pdf -s 20 -t "1cm 1cm 1cm 1cm"
 ```
 Convert an A5-sized PDF to a booklet:
 ```
-./generate_booklet.sh -i input.pdf -a5
+./makebooklet.sh -i input.pdf -a5
 ```
 
 ## How it Works
