@@ -27,7 +27,7 @@ usage() {
     echo "  -t   Trim margins (left top right bottom), e.g., '1cm 1cm 1cm 1cm' (default: $trim)"
     echo "  -d   Delta adjustments (horizontal vertical), e.g., '0.5cm 0cm' (default: $delta)"
     echo "  -o   Output PDF file (default: '<input>-booklet.pdf')"
-    echo "  -m   In case you do not hava a lot of pages you can select the size of a single signature booklet. (Default: $max_single_signature)"
+    echo "  -m   In case you do not hav a lot of pages you can select the size of a single signature booklet. (Default: $max_single_signature)"
     echo "  -c   Clip the input PDF page content (useful for cropping a specific area). For example if you need to get rid of page numbers from the original document"
     echo "  -h   Show this help message"
     exit 1
