@@ -14,7 +14,7 @@ sudo apt-get install poppler-utils
 ## Usage
 
 ```
-./makebooklet.sh -i <input.pdf> [-a4 | -a5] [-s <signature>] [-p <totalpages>] [-t <'L T R B'>] [-d <'X Y'>] [-c] [-o <output.pdf>]
+./makebooklet.sh -i <input.pdf> [-a4 | -a5] [-s <signature>] [-p <totalpages>] -m <max_single_sig> [-t <'L T R B'>] [-d <'X Y'>] [-c] [-o <output.pdf>]
 ```
 
 
@@ -41,8 +41,8 @@ sudo apt-get install poppler-utils
 - `-d <'X Y'>`
   Set delta adjustments (horizontal and vertical). Default is `'0cm 0cm'`.
 
-- `-m`
-  In case you do not have a lot of pages you can select the max size of a single signature booklet. (Default: 32)
+- `-m <max_single_sig>`
+  In case you do not have a lot of pages you can select the max size of a single signature booklet. (Default: `32`)
 
 - `-c`
   Clip the input PDF page content (useful for cropping a specific area). For example if you need to get rid of page numbers from the original document.

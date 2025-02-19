@@ -16,7 +16,7 @@ max_single_signature=32
 
 # Help message
 usage() {
-    echo "Usage: $0 -i <input.pdf> [-a4 | -a5] [-s <signature>] [-p <totalpages>] [-t <'L T R B'>] [-d <'X Y'>] [-o <output.pdf>] [-c]"
+    echo "Usage: $0 -i <input.pdf> [-a4 | -a5] [-s <signature>] [-p <totalpages>] [-m <max_single_sig>] [-t <'L T R B'>] [-d <'X Y'>] [-c] [-o <output.pdf>]"
     echo
     echo "Options:"
     echo "  -i   Input PDF file (required)"
@@ -27,7 +27,7 @@ usage() {
     echo "  -t   Trim margins (left top right bottom), e.g., '1cm 1cm 1cm 1cm' (default: $trim)"
     echo "  -d   Delta adjustments (horizontal vertical), e.g., '0.5cm 0cm' (default: $delta)"
     echo "  -o   Output PDF file (default: '<input>-booklet.pdf')"
-    echo "  -m   In case you do not hav a lot of pages you can select the size of a single signature booklet. (Default: $max_single_signature)"
+    echo "  -m   In case you do not have a lot of pages you can select the size of a single signature booklet. (Default: $max_single_signature)"
     echo "  -c   Clip the input PDF page content (useful for cropping a specific area). For example if you need to get rid of page numbers from the original document"
     echo "  -h   Show this help message"
     exit 1
@@ -122,8 +122,8 @@ fi
 # Adjust signature size based on total pages
 if [[ "$totalpages" -le "$max_single_signature" ]]; then
     # For totalpages <= $max_single_signature, find the closest multiple of 4 to totalpages
-best_signature=$(( (totalpages + 3) / 4 * 4 ))  # Closest multiple of 4 >= totalpages
-    echo "ℹ️  Best signature size for total pages <= $max_single_signature: $best_signature"
+    signature=$(( (totalpages + 3) / 4 * 4 ))  # Closest multiple of 4 >= totalpages
+    echo "ℹ️  Best signature size for total pages <= $max_single_signature: $signature"
 else
     possible_signatures=(20 24 28 32)  # Available signatures for totalpages > 32
     min_white_pages=1000  # Large initial value for min white pages
