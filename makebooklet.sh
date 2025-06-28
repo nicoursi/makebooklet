@@ -24,7 +24,7 @@ usage() {
     echo "  -a5  Force A5 source pages"
     echo "  -s   Signature size (default: $signature)"
     echo "  -p   Total number of pages (auto-detected if not provided)"
-    echo "  -t   Trim margins (left top right bottom), e.g., '1cm 1cm 1cm 1cm' (default: $trim)"
+    echo "  -t   Trim margins (left bottom right top), e.g., '1cm 1cm 1cm 1cm' (default: $trim)"
     echo "  -d   Delta adjustments (horizontal vertical), e.g., '0.5cm 0cm' (default: $delta)"
     echo "  -o   Output PDF file (default: '<input>-booklet.pdf')"
     echo "  -m   In case you do not have a lot of pages you can select the size of a single signature booklet. (Default: $max_single_signature)"
@@ -68,7 +68,7 @@ if [[ -z "$output" ]]; then
 fi
 
 # Determine number of pages to use for calculations
-if [[ -n "$pagerange" ]]; then
+if [[ "$pagerange" != "-" ]]; then
     start=$(echo $pagerange | cut -d'-' -f1)
     end=$(echo $pagerange | cut -d'-' -f2)
 
